@@ -9,6 +9,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 const PORT = process.env.PORT
 const app = express()
+require('./config/mongoose')
 
 //define an object which stores handlebars' settings
 const handlebarsSettings = {
