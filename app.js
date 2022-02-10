@@ -2,6 +2,8 @@
 const express = require('express')
 const { create } = require('express-handlebars')
 const routes = require('./routes')
+const usePassport = require('./config/passport')
+const session = require('express-session')
 
 if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -28,6 +30,14 @@ app.set('views', './views');
 
 //use body parser for POST message
 app.use(express.urlencoded({extended: true}))
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+
+usePassport(app)
 
 app.use('/', routes)
 

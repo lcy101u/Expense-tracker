@@ -1,16 +1,26 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+const userModel = require('../../models/userModel')
 
 router
   .route('/login')
   .get((req, res) => {
     res.render('login')
   })
-  .post((req, res) => {
-    const { email, password } = req.body
+  .post(passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  }))
 
-    //到DB找資料
+router
+  .route('/register')
+  .get((req, res) => {
+    res.render('register')
+  })
+  .post((req, res) => {
+    
   })
 
 module.exports = router
