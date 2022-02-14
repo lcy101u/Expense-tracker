@@ -1,1 +1,67 @@
-<p>Register</p>
+<div class="mt-5 row">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body border-primary">
+      <h1 class="text-center mt-3">Register</h1>
+      {{> message}}
+      <form action="/users/register" method="post">
+        <div class="mb-3">
+          <!-- Name -->
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter Name"
+            class="form-control"
+            value="{{name}}"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <!-- Email -->
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter email"
+            class="form-control"
+            value="{{email}}"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <!-- Password -->
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Password"
+            class="form-control"
+            value="{{password}}"
+          />
+        </div>
+        <div class="mb-3">
+          <!-- Confirmed password -->
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            class="form-control"
+            value="{{confirmPassword}}"
+          />
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+      <p class="mt-4 lead">
+        Have an account ?
+        <a href="/users/login">Login</a>
+      </p>
+    </div>
+  </div>
+</div>

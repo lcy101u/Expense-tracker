@@ -1,9 +1,12 @@
 //define express server, handlebars create function
 const express = require('express')
+const session = require('express-session')
 const { create } = require('express-handlebars')
 const routes = require('./routes')
 const usePassport = require('./config/passport')
-const session = require('express-session')
+const methodOverride = require('method-override')
+
+const flash = require('connect-flash')
 
 if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -30,6 +33,7 @@ app.set('views', './views');
 
 //use body parser for POST message
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -38,7 +42,14 @@ app.use(session({
 }))
 
 usePassport(app)
-
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  next()
+})
 app.use('/', routes)
 
 //Listening to port

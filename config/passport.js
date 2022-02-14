@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const userModel = require('../models/userModel')
+const bcrypt = require('bcryptjs')
 
 module.exports = app => {
   //Initialize passport module
@@ -32,7 +33,7 @@ module.exports = app => {
     done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
-    User.findById(id)
+    userModel.findById(id)
       .lean()
       .then(user => done(null, user))
       .catch(err => done(err, null))  //後面多放一個null 強調後面是空的
