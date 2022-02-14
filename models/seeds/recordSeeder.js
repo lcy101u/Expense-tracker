@@ -27,8 +27,8 @@ db.once('open', async () => {
     //check if user exists
     let currentUser = await userModel.findOne({email})
     if(!currentUser) {
-      //insert user into db
       const hashedPassword = await bcrypt.hashSync(password, 10) //const hash = bcrypt.hashSync(myPlaintextPassword, saltRounds); from npm bcrypt
+      //insert user into db
       currentUser = await userModel.create({name, email, password: hashedPassword})
     }
 
