@@ -41,6 +41,8 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(express.static('public')) //告訴express靜態檔案是放在名為 public 的資料夾中
+
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
