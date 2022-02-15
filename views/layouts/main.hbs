@@ -37,11 +37,14 @@
             <!--  res.locals 是 Express.js 幫我們開的一條捷徑，放在 res.locals 裡的資料，所有的 view 都可以存取。 -->
             {{#if isAuthenticated}}{{user.name}}の{{/if}}私帳
           </a>
-          {{#if isAuthenticated}}
-            <a href="/users/logout" class="btn btn-outline-info">登出</a>
-          {{else}}
-            <a href="/users/login" class="btn btn-outline-info">登入</a>
-          {{/if}}
+          <div>
+            {{#if isAuthenticated}}
+              <a href="/records/new" class="btn btn-outline-info">新增支出</a>
+              <a href="/users/logout" class="btn btn-outline-info">登出</a>
+            {{else}}
+              <a href="/users/login" class="btn btn-outline-info">登入</a>
+            {{/if}}
+          </div>
         </div>
       </nav>
     </header>

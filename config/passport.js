@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const userModel = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 
@@ -26,6 +27,31 @@ module.exports = app => {
         })
       })
       .catch(err => done(err, false))
+  }))
+
+  //Facebook 驗證
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
+    profileFields: ['email', 'displayName']
+  },
+  (accessToken, refreshToken, profile, done) => {
+    const { email, name } = profile._json
+    userModel.findOne({ email })
+      .then(user => {
+        if(user) {
+          return done(null, user)
+        }
+        const randomPassword = Math.random().toString(36).slice(-8)
+        bcrypt
+          .genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword, salt))
+          .then(hash => userModel.create({ name, email, password: hash }))
+          .then(user => done(null, user))
+          .catch(err => done(err))
+      })
+      .catch(err => console.error(err))
   }))
 
   //設定序列化與反序列化
