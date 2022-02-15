@@ -12,7 +12,6 @@ router.get('/new',async (req, res) => {
 })
 router.post('/', (req, res) => {
   req.body.userId = req.user._id
-  console.log(req.body)
   recordModel.create(req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
@@ -38,11 +37,9 @@ router
   })
 
 router.get('/:id/edit', async (req, res) => {
-   const userId = req.user._id
-
+  const userId = req.user._id
   const _id = req.params.id
-
-  let categoryArray = await categoryModel.find({}).lean().then()
+  let categoryArray = await categoryModel.find({}).lean()
 
   // find a currentRecord with recordID(_id) and userId
   recordModel.findOne({ _id, userId })
