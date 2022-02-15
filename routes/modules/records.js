@@ -5,11 +5,17 @@ const moment = require('moment')
 const recordModel = require('../../models/recordModel')
 const categoryModel = require('../../models/categoryModel')
 
-router.get('/new', (req, res) => {
-  res.render('new')
+router.get('/new',async (req, res) => {
+  const categoryArray = await categoryModel.find().lean()
+  console.log(categoryArray)
+  res.render('new', {categoryArray})
 })
 router.post('/', (req, res) => {
-  res.render('index')
+  req.body.userId = req.user._id
+  console.log(req.body)
+  recordModel.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
 })
 
 router

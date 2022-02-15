@@ -3,15 +3,13 @@
     <div class="card">
       <div class="card-body">
         <form action="/">
-          <div class="d-flex justify-content-between">
-            <div class="col-md-8">
-                <select class="form-select form-select-sm" name="category_bar" style=" width:100%;">
-                    <option>全部類別</option>
-                    {{#each categories}}
-                    <option>{{ this }}</option>
-                    {{/each}}
-                </select>
-            </div>
+          <div class="input-group">
+            <select class="form-select form-select-sm" id="inputGroupSelect04" name="category_bar" >
+              <option>全部類別</option>
+              {{#each categories}}
+              <option>{{ this }}</option>
+              {{/each}}
+            </select>
             <button class="btn btn-outline-secondary ml-4" type="submit">搜尋</button>
           </div>
         </form>

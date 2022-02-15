@@ -1,1 +1,63 @@
-<p>New</p>
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card border-info">
+      <h5 class="card-header">新增支出(*必填欄位)</h5>
+      <div class="card-body">
+        <form action="/records" method="post">
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="name">名稱*</span>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="date">日期*</span>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="category">類別*</span>
+            <select
+              id="category"
+              name="categoryId"
+              class="form-select"
+              required
+            >
+              <option value="" selected>類別</option>
+              {{#each categoryArray}}
+                <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="amount">金額*</span>
+            <input
+              type="text"
+              name="amount"
+              id="amount"
+              class="form-control"
+              min="0"
+              required
+            />
+          </div>
+          <div class="d-grid gap-2 d-md-block mt-3 text-end">
+            <button
+              type="reset"
+              class="btn btn-outline-danger"
+            >重新填寫</button>
+            <button type="submit" class="btn btn-outline-info">新增支出</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
