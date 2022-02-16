@@ -21,8 +21,6 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   req.body.userId = userId = req.user._id
     _id = req.params.id
-  console.log('id: ', _id)
-  console.log(req.body)
     recordModel.findOneAndUpdate({ _id, userId }, req.body)
       .then(() => res.redirect('/'))
       .catch(error => console.log(error))
