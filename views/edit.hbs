@@ -40,7 +40,7 @@
           <label for="category">類別*：</label>
           <select name="categoryId" id="category" class="form-select" required>
             {{#if currentRecord}}
-            <option selected>{{ currentRecord.categoryId.name }}</option>
+            <option value="{{currentRecord.categoryId._id}}" selected>{{ currentRecord.categoryId.name }}</option>
             {{else}}
             <option selected>類別</option>
             {{/if}}

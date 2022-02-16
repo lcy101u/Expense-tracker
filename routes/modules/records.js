@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
 const moment = require('moment')
 
 const recordModel = require('../../models/recordModel')
@@ -17,24 +18,24 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router
-  .route('/:id')
-  .put((req, res) => {
-    req.body.userId = userId = req.user._id
+router.put('/:id', (req, res) => {
+  req.body.userId = userId = req.user._id
     _id = req.params.id
-
+  console.log('id: ', _id)
+  console.log(req.body)
     recordModel.findOneAndUpdate({ _id, userId }, req.body)
       .then(() => res.redirect('/'))
       .catch(error => console.log(error))
-  })
-  .delete((req, res) => {
-    const userId = req.user._id
+})
+
+router.delete(':id', (req, res) => {
+  const userId = req.user._id
     const _id = req.params.id
 
     recordModel.findOneAndRemove({ userId, _id })
       .then(() => res.redirect('/'))
       .catch(error => console.log(error))
-  })
+})
 
 router.get('/:id/edit', async (req, res) => {
   const userId = req.user._id

@@ -2,13 +2,17 @@
   <div class="col-md-6 m-auto">
     <div class="card">
       <div class="card-body">
-        <form action="/">
+        <form action="/" method="GET">
           <div class="input-group">
             <select class="form-select form-select-sm" id="inputGroupSelect04" name="category_bar" >
-              <option>全部類別</option>
+              {{#if category}}
+              <option value="{{category}}" selected>{{category}}</option>
               {{#each categories}}
-              <option>{{ this }}</option>
+              <option value="{{this}}">{{ this }}</option>
               {{/each}}
+              {{else}}
+              <option selected>全部類別</option>
+              {{/if}}
             </select>
             <button class="btn btn-outline-secondary ml-4" type="submit">搜尋</button>
           </div>
