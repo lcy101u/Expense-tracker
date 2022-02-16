@@ -43,7 +43,7 @@
                     <div class="col-md-2">
                         <a href="/records/{{ this.id }}/edit" class="btn btn-outline-success btn-sm m-1">修改</a>
                         <form action="/records/{{ this.id }}?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-outline-danger btn-sm m-1">刪除</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm m-1" onclick="return confirm('確定要刪除嗎{{ this.name }}嗎？')">刪除</button>
                         </form>
                     </div>
                 </div>
