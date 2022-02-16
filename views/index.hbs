@@ -6,13 +6,14 @@
           <div class="input-group">
             <select class="form-select form-select-sm" id="inputGroupSelect04" name="category_bar" >
               {{#if category}}
-              <option value="{{category}}" selected>{{category}}</option>
+              <option>{{category}}</option>
+              {{/if}}
+              
               {{#each categories}}
               <option value="{{this}}">{{ this }}</option>
               {{/each}}
-              {{else}}
-              <option selected>全部類別</option>
-              {{/if}}
+              
+              <option disable selected>全部類別</option>
             </select>
             <button class="btn btn-outline-secondary ml-4" type="submit">搜尋</button>
           </div>

@@ -6,7 +6,6 @@ const categoryModel = require('../../models/categoryModel')
 
 router.get('/', (req, res) => {
    const userId = req.user._id
-    console.log(req.query)
     const categoryNames = []
     const recordsInfo = []
     const categorySortName = req.query.category_bar || '全部類別'
