@@ -2,7 +2,7 @@
   <div class="col-md-6 m-auto">
     <div class="card">
       <div class="card-body">
-        <form action="/" method="GET">
+        <form action="/">
           <div class="input-group">
             <select class="form-select form-select-sm" id="inputGroupSelect04" name="category_bar" >
               {{#if category}}
@@ -42,7 +42,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-2">
                         <a href="/records/{{ this.id }}/edit" class="btn btn-outline-success btn-sm m-1">修改</a>
-                        <form action="/records/{{ this.id }}?_method=DELETE" method="POST">
+                        <form action="/records/{{ this.id }}?_method=DELETE" method="post">
                             <button type="submit" class="btn btn-outline-danger btn-sm m-1" onclick="return confirm('確定要刪除嗎{{ this.name }}嗎？')">刪除</button>
                         </form>
                     </div>

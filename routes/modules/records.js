@@ -26,13 +26,12 @@ router.put('/:id', (req, res) => {
       .catch(error => console.log(error))
 })
 
-router.delete(':id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const userId = req.user._id
-    const _id = req.params.id
-
-    recordModel.findOneAndRemove({ userId, _id })
-      .then(() => res.redirect('/'))
-      .catch(error => console.log(error))
+  const _id = req.params.id
+  recordModel.findOneAndRemove({ userId, _id })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 router.get('/:id/edit', async (req, res) => {
@@ -45,6 +44,7 @@ router.get('/:id/edit', async (req, res) => {
     .populate('categoryId', 'name')
     .lean()
     .then((currentRecord) => {
+      console.log('get:', currentRecord)
       // transfer date to YYYY-MM-DD format 
       // YYYY -> Year
       // MM -> Month
